@@ -11,7 +11,7 @@ require('dotenv').config({ debug: process.env.DEBUG });
 const Discord = require('discord.js');
 
 // Open the config file to get the prefix
-const config = require('./config.json');
+const {prefix} = require('./config.json');
 
 // Create an instance of a Discord client
 const client = new Discord.Client();
@@ -35,19 +35,20 @@ client.on('message', message => {
   // If the message is "ping"
   if (command === 'ping') {
     // Send "pong" to the same channel
-      message.channel.send('pong');
+    message.channel.send('pong');
   } else if (command === 'bing') {
-      message.channel.send('NO!');
+    message.channel.send('NO!');
   } else if (command === 'server') {
-      message.channel.send(`Server name: ${message.guild.name}\nTotal members: ${message.guild.memberCount}`);
+    message.channel.send(`Server name: ${message.guild.name}\nTotal members: ${message.guild.memberCount}`);
   } else if (command === 'user-info') {
-      message.channel.send(`Your username: ${message.author.username}\nYour ID: ${message.author.id}`);
+    message.channel.send(`Your username: ${message.author.username}\nYour ID: ${message.author.id}`);
   } else if (command === 'args-info') {
     if (!args.length) {
       return message.channel.send(`You didn't provide any arguments, ${message.author}!`);
     }
-  
     message.channel.send(`Command name: ${command}\nArguments: ${args}`);
+  } else if (command === 'commands' || command == 'command') {
+    return message.channel.send('(command prefix = !) ping, bing, server, user-info, args-info, commands');
   }
 });
 
