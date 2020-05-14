@@ -26,8 +26,11 @@ client.on('ready', () => {
 
 // Create an event listener for messages
 client.on('message', message => {
+  // ignore if no prefix found or if its a bot command
   if (!message.content.startsWith(prefix) || message.author.bot) return;
+  // split the line into strings in an array and remove the prefix
   const args = message.content.slice(prefix.length).split(/ +/);
+  // shift the array and convert to lowercase
   const command = args.shift().toLowerCase();
   // If the message is "ping"
   if (command === 'ping') {
