@@ -11,7 +11,7 @@ require('dotenv').config({ debug: process.env.DEBUG });
 const Discord = require('discord.js');
 
 // Open the config file to get the prefix
-const {prefix} = require('./config.json');
+const { prefix } = require('./config.json');
 
 // Create an instance of a Discord client
 const client = new Discord.Client();
